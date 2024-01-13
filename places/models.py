@@ -11,3 +11,11 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
+
+class Images(models.Model):
+    order = models.IntegerField()
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    img = models.ImageField()
+
+    def __str__(self):
+        return f'{self.order} {self.event}'
