@@ -13,9 +13,16 @@ class Event(models.Model):
 
 
 class Images(models.Model):
-    order = models.IntegerField()
+    order = models.IntegerField(
+        default=0,
+        blank=False,
+        null=False,)
+
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     img = models.ImageField()
+
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
         return f'{self.order} {self.event}'

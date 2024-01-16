@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from adminsortable2.admin import SortableStackedInline, SortableAdminMixin, SortableAdminBase
 
 from .models import Event, Images
 
 
-class ImagesInline(admin.TabularInline):
+class ImagesInline(SortableStackedInline, admin.TabularInline):
     model = Images
 
     readonly_fields = ["get_preview"]
@@ -20,11 +21,11 @@ class ImagesInline(admin.TabularInline):
             width=width,
             height=height,
             )
-    )
+        )
 
 
 @admin.register(Event)
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = [
         ImagesInline,
     ]
