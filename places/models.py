@@ -1,10 +1,11 @@
 from django.db import models
+from tinymce.models import HTMLField
 
 
 class Event(models.Model):
     title = models.CharField(max_length=500)
     description_short = models.TextField()
-    description_long = models.TextField()
+    description_long = HTMLField()
     coordinates_lng = models.DecimalField(max_digits=20, decimal_places=15)
     coordinates_lat = models.DecimalField(max_digits=20, decimal_places=15)
 
