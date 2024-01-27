@@ -3,7 +3,7 @@ from django.core.files.base import ContentFile
 
 import requests
 
-from places.models import Event, Images
+from places.models import Event, Image
 
 
 class Command(BaseCommand):
@@ -36,7 +36,7 @@ class Command(BaseCommand):
             response.raise_for_status()
 
             image_file = ContentFile(image_response.content)
-            image = Images(
+            image = Image(
                 order=i,
                 event=event,
             )

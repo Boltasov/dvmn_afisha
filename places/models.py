@@ -13,7 +13,7 @@ class Event(models.Model):
         return self.title
 
 
-class Images(models.Model):
+class Image(models.Model):
     order = models.IntegerField(
         default=0,
         blank=False,
