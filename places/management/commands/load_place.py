@@ -10,7 +10,10 @@ class Command(BaseCommand):
     help = 'Download a new place to data base'
 
     def add_arguments(self, parser):
-        parser.add_argument('json_url', type=str, help='URL of json file with the palce data')
+        parser.add_argument(
+            'json_url',
+            type=str,
+            help='URL of json file with the palce data')
 
     def handle(self, *args, **kwargs):
         url = kwargs['json_url']
@@ -45,4 +48,3 @@ class Command(BaseCommand):
             image.save()
 
         print('Событие добавлено в базу')
-
