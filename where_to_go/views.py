@@ -41,7 +41,7 @@ def places1(request, id):
 def places(request, id):
     event = Event.objects.get(pk=id)
     response = model_to_dict(event)
-    response["imgs"] = [image.img.url for image in event.images_set.all()]
+    response["imgs"] = [image.img.url for image in event.image_set.all()]
     return JsonResponse(
         response,
         safe=False,
