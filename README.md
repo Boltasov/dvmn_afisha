@@ -19,9 +19,9 @@ cd dvmn_afisha
 python pip install -r requirements.txt
 ```
 ### Как запустить на локальном компьютере
-Создайте и выполните миграции
+Проверьте наличие миграций и примените миграции
 ```commandline
-python manage.py makemigrations
+python manage.py makemigrations --dry-run --check  
 
 python manage.py migrate
 ```
