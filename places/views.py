@@ -1,5 +1,5 @@
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from places.models import Event
 from django.forms.models import model_to_dict
 from django.urls import reverse
@@ -39,7 +39,7 @@ def places1(request, id):
 
 
 def places(request, id):
-    event = Event.objects.get(pk=id)
+    event = get_object_or_404(Event, pk=id)
     response = model_to_dict(event)
     response["imgs"] = [image.img.url for image in event.images.all()]
     return JsonResponse(
