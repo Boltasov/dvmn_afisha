@@ -7,8 +7,14 @@ class Event(models.Model):
         max_length=500,
         verbose_name="Заголовок"
     )
-    description_short = models.TextField(verbose_name="Короткое описание")
-    description_long = HTMLField(verbose_name="Длинное описание")
+    short_description = models.TextField(
+        verbose_name="Короткое описание",
+        blank=True,
+    )
+    long_description = HTMLField(
+        verbose_name="Длинное описание",
+        blank=True,
+    )
     coordinates_lng = models.DecimalField(
         max_digits=20,
         decimal_places=15,
@@ -31,6 +37,7 @@ class Event(models.Model):
 class Image(models.Model):
     order = models.IntegerField(
         default=0,
+        db_index=True,
         blank=False,
         null=False,
         verbose_name="Порядок")
@@ -38,7 +45,8 @@ class Image(models.Model):
     event = models.ForeignKey(
         Event,
         on_delete=models.CASCADE,
-        verbose_name="Событие")
+        verbose_name="Событие",
+        related_name="images")
     img = models.ImageField(verbose_name="Изображение")
 
     class Meta:
