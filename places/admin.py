@@ -13,9 +13,10 @@ class ImagesInline(SortableStackedInline, admin.TabularInline):
     def get_preview(self, obj):
         width = obj.img.width
         height = obj.img.height
-        if height > 200:
-            width = width*(200/height)
-            height = 200
+        max_height = 200
+        if height > max_height:
+            width = width*(max_height/height)
+            height = max_height
         return format_html('<img src="{url}" width="{width}" height={height} />'.format(
             url=obj.img.url,
             width=width,
