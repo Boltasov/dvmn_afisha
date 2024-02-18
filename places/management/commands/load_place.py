@@ -23,8 +23,8 @@ class Command(BaseCommand):
 
         event, created = Event.objects.get_or_create(
             title=raw_event['title'],
-            description_short=raw_event['description_short'],
-            description_long=raw_event['description_long'],
+            short_description=raw_event['short_description'],
+            long_description=raw_event['long_description'],
             coordinates_lng=response.json()['coordinates']['lng'],
             coordinates_lat=response.json()['coordinates']['lat'],
         )
