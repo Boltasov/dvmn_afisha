@@ -18,7 +18,7 @@ def show_afisha(request):
             "properties": {
                 "title": event.title,
                 "placeId": event.pk,
-                "detailsUrl": reverse(places, args=[event.pk])
+                "detailsUrl": reverse(get_places, args=[event.pk])
             }
           }
         features.append(feature)
@@ -33,12 +33,7 @@ def show_afisha(request):
     return render(request, 'index.html', context)
 
 
-def places1(request, id):
-    event = Event.objects.get(pk=id)
-    return HttpResponse(f"{event}")
-
-
-def places(request, id):
+def get_places(request, id):
     event = get_object_or_404(Event.objects.select_related(), pk=id)
     response = model_to_dict(event)
     response["imgs"] = [image.img.url for image in event.images.all()]
