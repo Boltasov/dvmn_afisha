@@ -39,7 +39,7 @@ def places1(request, id):
 
 
 def places(request, id):
-    event = get_object_or_404(Event, pk=id)
+    event = get_object_or_404(Event.objects.select_related(), pk=id)
     response = model_to_dict(event)
     response["imgs"] = [image.img.url for image in event.images.all()]
     return JsonResponse(
