@@ -32,4 +32,6 @@ class EventAdmin(SortableAdminBase, admin.ModelAdmin):
     ]
 
 
-admin.site.register(Image)
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    raw_id_fields = ['event', ]
