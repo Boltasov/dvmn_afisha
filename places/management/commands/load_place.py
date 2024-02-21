@@ -40,13 +40,13 @@ class Command(BaseCommand):
             image_response = requests.get(img_url)
             response.raise_for_status()
 
-            image_file = ContentFile(image_response.content)
-            image = Image(
+            img_name = f'{event.title}_{img_order}'
+            image_file = ContentFile(image_response.content, name=img_name)
+            image = Image.objects.create(
                 order=img_order,
                 event=event,
             )
 
-            image.img.save(f'{event.title}_{img_order}', image_file, save=False)
-            image.save()
+            image.img.save(image_file, save=True)
 
         print('Событие добавлено в базу')
