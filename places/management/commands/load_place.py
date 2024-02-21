@@ -1,7 +1,7 @@
+import requests
+
 from django.core.management.base import BaseCommand
 from django.core.files.base import ContentFile
-
-import requests
 
 from places.models import Event, Image
 

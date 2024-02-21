@@ -1,8 +1,9 @@
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, get_object_or_404
-from places.models import Event
 from django.forms.models import model_to_dict
+from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+
+from places.models import Event
 
 
 def show_afisha(request):

@@ -1,8 +1,9 @@
-from django.contrib import admin
-from django.urls import path, include
-from places import urls
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import path, include
+
+from places import urls
 
 
 urlpatterns = [
