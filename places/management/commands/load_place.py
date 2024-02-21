@@ -36,17 +36,17 @@ class Command(BaseCommand):
             return
 
         img_urls = response.json()['imgs']
-        for i, img_url in enumerate(img_urls):
+        for img_order, img_url in enumerate(img_urls):
             image_response = requests.get(img_url)
             response.raise_for_status()
 
             image_file = ContentFile(image_response.content)
             image = Image(
-                order=i,
+                order=img_order,
                 event=event,
             )
 
-            image.img.save(f'{event.title}_{i}', image_file, save=False)
+            image.img.save(f'{event.title}_{img_order}', image_file, save=False)
             image.save()
 
         print('Событие добавлено в базу')
