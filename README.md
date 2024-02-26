@@ -19,6 +19,12 @@ cd dvmn_afisha
 python pip install -r requirements.txt
 ```
 ### Как запустить на локальном компьютере
+Подготовьте переменные окружения:
+- SECRET_KEY - сгенерируйте свой https://www.makeuseof.com/django-secret-key-generate-new/
+- DEBUG - по умолчанию False
+- ALLOWED_HOSTS для разработки будет достаточно `localhost, 127.0.0.1`
+- STATIC_ROOT по умолчанию `collected_static`
+
 Проверьте наличие миграций и примените миграции
 ```commandline
 python manage.py makemigrations --dry-run --check  
@@ -42,10 +48,10 @@ python manage.py runserver
 Для этого в командной выполните:
 
 ```commandline
-python manage.py load_place http://адрес/файла.json
+python manage.py load_place https://raw.githubusercontent.com/Boltasov/dvmn_afisha/master/example_data.json
 ```
 
-Пример файла, подходящего для загрузки - `example_data.json`
+Для загрузки своих данных замените ссылку на файл на свою.
 
 
 ### Посмотреть как будет выглядеть сайт

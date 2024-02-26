@@ -28,9 +28,9 @@ env.read_env()
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = os.getenv('DEBUG', default=False)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost, 127.0.0.1'])
 
 
 # Application definition
@@ -150,7 +150,7 @@ TEMPLATES = [
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, env('STATIC_ROOT'))
+STATIC_ROOT = os.path.join(BASE_DIR, os.getenv('STATIC_ROOT', default='collected_static'))
 
 
 MEDIA_URL = '/media/'
