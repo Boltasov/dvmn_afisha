@@ -2,6 +2,7 @@ from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.db import connection
 
 from places.models import Event
 
@@ -35,7 +36,7 @@ def show_afisha(request):
 
 
 def get_places(request, id):
-    event = get_object_or_404(Event.objects.select_related(), pk=id)
+    event = get_object_or_404(Event.objects.prefetch_related('images'), pk=id)
     response = model_to_dict(event)
     response["imgs"] = [image.img.url for image in event.images.all()]
     return JsonResponse(
