@@ -35,7 +35,7 @@ class Command(BaseCommand):
             print('Событие уже есть в базе')
             return
 
-        img_urls = response.json()['imgs']
+        img_urls = raw_event['imgs']
         for img_order, img_url in enumerate(img_urls):
             image_response = requests.get(img_url)
             response.raise_for_status()
