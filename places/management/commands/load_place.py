@@ -45,8 +45,7 @@ class Command(BaseCommand):
             image = Image.objects.create(
                 order=img_order,
                 event=event,
+                image=image_file,
             )
-
-            image.img.save(image_file, save=True)
 
         print('Событие добавлено в базу')
